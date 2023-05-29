@@ -31,6 +31,7 @@ public:
 
     Tileset overworldTileset;
     Tileset caveTileset;
+    Tileset innerTileset;
 
     Camera2D *camera;
 

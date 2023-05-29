@@ -13,7 +13,8 @@ Game::Game(float screenWidth, float screenHeight, int frameRate)
           player(Player(screenWidth, screenHeight, &frameCount)), frameCount(0),
           overworldTileset(Tileset("assets/sprites/overworld.png", 16, 16)),
           caveTileset("assets/sprites/cave.png", 16, 16),
-          camera(&player.camera), currentMap(&overworldTileset, &caveTileset,"assets/maps/lv1.json") {}
+          innerTileset("assets/sprites/inner.png", 16, 16),
+          camera(&player.camera), currentMap(&overworldTileset, &caveTileset, &innerTileset, "assets/maps/lv1.json") {}
 
 void Game::run() {
     while (!WindowShouldClose()) {
