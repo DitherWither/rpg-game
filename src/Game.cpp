@@ -12,7 +12,7 @@ Game::Game(float screenWidth, float screenHeight, int frameRate)
           frameRate(frameRate),
           player(Player(screenWidth, screenHeight, &frameCount)), frameCount(0),
           overworldTileset(Tileset("assets/sprites/overworld.png", 16, 16)),
-          camera(&player.camera) {}
+          camera(&player.camera), currentMap(&overworldTileset) {}
 
 void Game::run() {
     while (!WindowShouldClose()) {
@@ -37,7 +37,7 @@ void Game::draw() {
 
     BeginMode2D(*camera);
 
-    overworldTileset.draw(0, 0, 0);
+    currentMap.draw();
 
     player.draw();
 
