@@ -9,6 +9,7 @@
 #include "Player.hpp"
 #include "Tileset.hpp"
 #include "raylib.h"
+#include "Map.hpp"
 
 class Game {
 private:
@@ -30,6 +31,8 @@ public:
 
     Tileset overworldTileset;
     Camera2D *camera;
+
+    Map currentMap;
 
     Game(float screenWidth, float screenHeight, int frameRate);
 

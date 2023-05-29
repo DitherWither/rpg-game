@@ -4,7 +4,7 @@ find_package(raylib 3.0 REQUIRED) # Requires at least version 3.0
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(rpg_game src/main.cpp src/Game.cpp src/Game.hpp src/Player.cpp src/Player.hpp src/Tileset.cpp src/Tileset.hpp)
+add_executable(rpg_game src/main.cpp src/Game.cpp src/Game.hpp src/Player.cpp src/Player.hpp src/Tileset.cpp src/Tileset.hpp src/Map.cpp src/Map.hpp)
 
 target_link_libraries(rpg_game raylib)
 
