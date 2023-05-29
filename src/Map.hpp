@@ -9,14 +9,20 @@
 #include <vector>
 #include "Tileset.hpp"
 
+class MapLayer {
+public:
+    std::vector<std::vector<int>> tiles;
+    std::vector<std::vector<std::string>> style;
+    void draw();
+};
+
 class Map {
 private:
     Tileset *overworldTileset;
     Tileset *caveTileset;
     Tileset *innerTileset;
 
-    std::vector<std::vector<int>> mapContents;
-    std::vector<std::vector<std::string>> mapStyles;
+    std::vector<MapLayer> layers;
     std::string filename;
 
 
