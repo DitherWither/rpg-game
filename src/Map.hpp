@@ -9,12 +9,7 @@
 #include <vector>
 #include "Tileset.hpp"
 
-class MapLayer {
-public:
-    std::vector<std::vector<int>> tiles;
-    std::vector<std::vector<std::string>> style;
-    void draw();
-};
+#include "MapLayer.hpp"
 
 class Map {
 private:
