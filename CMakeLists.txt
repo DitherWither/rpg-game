@@ -12,7 +12,7 @@ FetchContent_MakeAvailable(raylib)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(rpg_game src/main.cpp src/Game.cpp src/Game.hpp src/Player.cpp src/Player.hpp src/Tileset.cpp src/Tileset.hpp src/Map.cpp src/Map.hpp)
+add_executable(rpg_game src/main.cpp src/Game.cpp src/Game.hpp src/Player.cpp src/Player.hpp src/Tileset.cpp src/Tileset.hpp src/Map.cpp src/Map.hpp src/MapLayer.cpp src/MapLayer.hpp)
 
 target_link_libraries(rpg_game PUBLIC raylib)
 target_link_libraries(rpg_game PRIVATE nlohmann_json::nlohmann_json)
