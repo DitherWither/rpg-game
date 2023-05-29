@@ -20,20 +20,21 @@ auto read_file(std::string_view path) -> std::string {
 
     auto out = std::string();
     auto buf = std::string(read_size, '\0');
-    while (stream.read(& buf[0], read_size)) {
+    while (stream.read(&buf[0], read_size)) {
         out.append(buf, 0, stream.gcount());
     }
     out.append(buf, 0, stream.gcount());
     return out;
 }
 
-Map::Map(Tileset *overworldTileset, Tileset* caveTileset, std::string filename) : overworldTileset(overworldTileset), filename(filename), caveTileset(caveTileset) {
+Map::Map(Tileset *overworldTileset, Tileset *caveTileset, Tileset *innerTileset, std::string filename)
+        : overworldTileset(overworldTileset), filename(filename), caveTileset(caveTileset), innerTileset(innerTileset) {
     // Load file into a string
     std::string fileString = read_file(filename);
     json fileJson = json::parse(fileString);
 
-    this -> mapContents = fileJson["tiles"].get<std::vector<std::vector<int>>>();
-    this -> mapStyles = fileJson["style"].get<std::vector<std::vector<std::string>>>();
+    this->mapContents = fileJson["tiles"].get<std::vector<std::vector<int>>>();
+    this->mapStyles = fileJson["style"].get<std::vector<std::vector<std::string>>>();
 }
 
 void Map::draw() {
@@ -43,9 +44,11 @@ void Map::draw() {
             int ypos = column * this->overworldTileset->tileHeight;
 
             if (mapStyles[column][row] == "o")
-            overworldTileset->draw(mapContents[column][row], xpos, ypos);
+                overworldTileset->draw(mapContents[column][row], xpos, ypos);
             else if (mapStyles[column][row] == "c")
                 caveTileset->draw(mapContents[column][row], xpos, ypos);
+            else if(mapStyles[column][row] == "i")
+                innerTileset->draw(mapContents[column][row], xpos, ypos);
 
         }
     }
