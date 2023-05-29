@@ -12,7 +12,7 @@ Game::Game(float screenWidth, float screenHeight, int frameRate)
           frameRate(frameRate),
           player(Player(screenWidth, screenHeight, &frameCount)), frameCount(0),
           overworldTileset(Tileset("assets/sprites/overworld.png", 16, 16)),
-          camera(&player.camera), currentMap(&overworldTileset) {}
+          camera(&player.camera), currentMap(&overworldTileset, "assets/maps/lv1.json") {}
 
 void Game::run() {
     while (!WindowShouldClose()) {
