@@ -30,6 +30,8 @@ public:
     int frameCount;
 
     Tileset overworldTileset;
+    Tileset caveTileset;
+
     Camera2D *camera;
 
     Map currentMap;

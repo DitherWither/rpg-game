@@ -12,7 +12,8 @@ Game::Game(float screenWidth, float screenHeight, int frameRate)
           frameRate(frameRate),
           player(Player(screenWidth, screenHeight, &frameCount)), frameCount(0),
           overworldTileset(Tileset("assets/sprites/overworld.png", 16, 16)),
-          camera(&player.camera), currentMap(&overworldTileset, "assets/maps/lv1.json") {}
+          caveTileset("assets/sprites/cave.png", 16, 16),
+          camera(&player.camera), currentMap(&overworldTileset, &caveTileset,"assets/maps/lv1.json") {}
 
 void Game::run() {
     while (!WindowShouldClose()) {
@@ -22,7 +23,9 @@ void Game::run() {
     }
 }
 
-Game::~Game() { CloseWindow(); }
+Game::~Game() {
+    CloseWindow();
+}
 
 void Game::input() { player.input(); }
 

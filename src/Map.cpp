@@ -27,17 +27,13 @@ auto read_file(std::string_view path) -> std::string {
     return out;
 }
 
-Map::Map(Tileset *overworldTileset, std::string filename) : overworldTileset(overworldTileset), filename(filename) {
-    this->mapContents = {{0, 0, 0, 0},
-                         {0, 19, 19, 0},
-                         {0, 19, 0, 0, 0},
-                         {0, 0, 0, 0}};
-
+Map::Map(Tileset *overworldTileset, Tileset* caveTileset, std::string filename) : overworldTileset(overworldTileset), filename(filename), caveTileset(caveTileset) {
     // Load file into a string
     std::string fileString = read_file(filename);
     json fileJson = json::parse(fileString);
 
     this -> mapContents = fileJson["tiles"].get<std::vector<std::vector<int>>>();
+    this -> mapStyles = fileJson["style"].get<std::vector<std::vector<std::string>>>();
 }
 
 void Map::draw() {
@@ -46,7 +42,11 @@ void Map::draw() {
             int xpos = row * this->overworldTileset->tileWidth;
             int ypos = column * this->overworldTileset->tileHeight;
 
+            if (mapStyles[column][row] == "o")
             overworldTileset->draw(mapContents[column][row], xpos, ypos);
+            else if (mapStyles[column][row] == "c")
+                caveTileset->draw(mapContents[column][row], xpos, ypos);
+
         }
     }
 }
