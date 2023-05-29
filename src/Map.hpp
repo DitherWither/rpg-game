@@ -12,12 +12,14 @@
 class Map {
 private:
     Tileset *overworldTileset;
+    Tileset *caveTileset;
     std::vector<std::vector<int>> mapContents;
+    std::vector<std::vector<std::string>> mapStyles;
     std::string filename;
 
 
 public:
-    Map(Tileset* overworldTileset, std::string filename);
+    Map(Tileset* overworldTileset, Tileset* caveTileset, std::string filename);
     void draw();
 };
 
